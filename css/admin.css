@@ -1,0 +1,140 @@
+/* =====================================================
+   Minitopia — Admin Styles
+   ===================================================== */
+
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+#login-section {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+#login-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: var(--font-head);
+    color: var(--yellow);
+}
+
+body.light #login-section h2 {
+    background: linear-gradient(135deg, #5b21b6 0%, #a855f7 60%, #c084fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+#login-form .btn {
+    width: 100%;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+    font-family: var(--font-head);
+    color: var(--yellow);
+}
+
+body.light .dashboard-header h2 {
+    background: linear-gradient(135deg, #5b21b6 0%, #a855f7 60%, #c084fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#reservations-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#reservations-table th,
+#reservations-table td {
+    border: 1px solid var(--border);
+    padding: 12px;
+    text-align: left;
+}
+
+#reservations-table th {
+    background-color: var(--bg-card-2);
+    font-weight: 700;
+    color: var(--text);
+}
+
+#reservations-table tbody tr:nth-child(even) {
+    background-color: var(--bg-card);
+}
+
+#reservations-table tbody tr:hover {
+    background-color: var(--bg-input);
+}
+
+.status-pending { color: var(--yellow); font-weight: 700; }
+.status-accepted { color: var(--green); font-weight: 700; }
+.status-rejected { color: var(--pink); font-weight: 700; }
+
+.action-buttons button {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    #reservations-table,
+    #reservations-table thead,
+    #reservations-table tbody,
+    #reservations-table th,
+    #reservations-table td,
+    #reservations-table tr {
+        display: block;
+    }
+    #reservations-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    #reservations-table tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+    }
+    #reservations-table td {
+        border: none;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        padding-left: 50%;
+    }
+    #reservations-table td:before {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--text-soft);
+    }
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}

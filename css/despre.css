@@ -1,0 +1,107 @@
+/* DESPRE NOI specific */
+.story{
+  max-width:1180px;margin:0 auto;
+  padding:40px 40px 80px;
+  display:grid;grid-template-columns:1fr 1.1fr;gap:60px;
+  align-items:center;
+}
+.story-text h2{
+  font-family:var(--font-head);font-weight:700;
+  font-size:2rem;color:var(--yellow);
+  margin-bottom:22px;
+}
+.story-text p{
+  color:var(--text-soft);line-height:1.85;
+  margin-bottom:16px;font-size:.98rem;
+}
+.story-img img{
+  width:100%;height:440px;object-fit:cover;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+}
+
+/* VALORI 4 cards */
+.values{padding:60px 24px;max-width:1180px;margin:0 auto}
+.values h2{
+  font-family:var(--font-head);font-weight:700;
+  font-size:2rem;color:var(--yellow);
+  text-align:center;margin-bottom:40px;
+}
+.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.val-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:36px 22px;
+  text-align:center;transition:transform .3s;
+}
+.val-card:hover{transform:translateY(-5px)}
+.val-icon{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(255,45,120,.15);
+  margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;color:var(--pink);
+}
+.val-card h3{
+  font-family:var(--font-head);font-weight:600;
+  font-size:1.05rem;color:var(--white);
+  margin-bottom:8px;
+}
+body.light .val-card h3{color:var(--text)}
+.val-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+/* ECHIPA */
+.team{padding:60px 24px;max-width:1180px;margin:0 auto}
+.team h2{
+  font-family:var(--font-head);font-weight:700;
+  font-size:2rem;color:var(--yellow);
+  text-align:center;margin-bottom:40px;
+}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:40px 24px;text-align:center;
+  transition:transform .3s;
+}
+.team-card:hover{transform:translateY(-5px)}
+.team-avatar{
+  width:74px;height:74px;border-radius:50%;
+  margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-weight:700;
+  font-size:1.4rem;color:#fff;
+}
+.team-card h3{
+  font-family:var(--font-head);font-weight:600;
+  font-size:1.1rem;color:var(--white);
+  margin-bottom:4px;
+}
+body.light .team-card h3{color:var(--text)}
+.team-card p{font-size:.88rem;color:var(--muted)}
+
+/* GALERIE - orizontal scroll */
+.gallery-section{padding:40px 24px 20px;max-width:1280px;margin:0 auto}
+.gallery-section h2{
+  font-family:var(--font-head);font-weight:700;
+  font-size:1.4rem;color:var(--yellow);
+  margin-bottom:20px;padding-left:8px;
+}
+.gallery-scroll{
+  display:flex;gap:16px;overflow-x:auto;
+  padding:0 8px 16px;
+  scrollbar-color:var(--purple) var(--bg-card);
+}
+.gallery-scroll img{
+  width:280px;height:200px;flex-shrink:0;
+  object-fit:cover;border-radius:var(--radius);
+}
+
+@media(max-width:1024px){
+  .val-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .story{grid-template-columns:1fr;padding:24px 20px 56px;gap:32px}
+  .story-img img{height:280px}
+  .val-grid{grid-template-columns:1fr}
+}

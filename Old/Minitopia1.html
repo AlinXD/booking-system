@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minitopia · Mini world. Maxi fun.</title>
+    <link rel="stylesheet" href="css/style.css" /> 
+    <script src="../Minitopia/script.js"></script>
+    <!-- Fonturi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    
+</head>
+<body>
+    <div class="darken-overlay" id="darkenOverlay"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="intro-overlay" id="introOverlay">
+        <div class="intro-content">
+            <div class="intro-circle">
+                <div class="intro-minitopia">Minitopia</div>
+                <div class="intro-slogan">Mini world. Maxi fun.</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="homepage-firstPage">
+        <header class="header">
+            <div class="logo-wrapper" id="logoBubble">
+                <div class="bubble"></div>
+                <div class="logo-text">Minitopia</div>
+            </div>
+            <nav class="navbar">
+                <a href="#despre" class="nav-link">Despre noi</a>
+                <a href="#pachete" class="nav-link">Pachete & Tarife</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#rezervari" class="nav-link">Rezervări</a>
+            </nav>
+        </header>
+        </div> 
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">🌈 Bine ai venit în Minitopia!</h1>
+                <p class="hero-subtitle">Locul unde imaginația prinde viață și fiecare colț e o nouă aventură.</p>
+                <a href="#rezervari" class="hero-btn">🎈 Hai să ne jucăm!</a>
+            </div>
+        </section>
+        </div>
+        <section id="despre">
+            <h2 class="section-title">🧸 Despre noi</h2>
+            <div class="gallery">
+                <div class="gallery-item"><i class="fas fa-smile-beam"></i><span>Distracție garantată</span></div>
+                <div class="gallery-item"><i class="fas fa-child"></i><span>Siguranță maximă</span></div>
+                <div class="gallery-item"><i class="fas fa-birthday-cake"></i><span>Petreceri tematice</span></div>
+                <div class="gallery-item"><i class="fas fa-users"></i><span>Echipă dedicată</span></div>
+            </div>
+            <p style="text-align: center; max-width: 800px; margin: 2rem auto; font-size: 1.3rem; color: #1e1e1e;">
+                Minitopia este mai mult decât un loc de joacă – este o lume în miniatură creată special pentru piticii voștri.
+            </p>
+        </section>
+
+        <section id="pachete">
+            <h2 class="section-title">🎁 Pachete & Tarife</h2>
+            <div class="card-container">
+                <div class="card" data-package="explorator">
+                    <div class="card-icon"><i class="fas fa-compass"></i></div>
+                    <h3>Pachet Explorator</h3>
+                    <p>1 oră de joacă și descoperire.</p>
+                    <div class="card-price">50 lei</div>
+                </div>
+                <div class="card" data-package="aventura">
+                    <div class="card-icon"><i class="fas fa-hiking"></i></div>
+                    <h3>Pachet Aventură</h3>
+                    <p>3 ore de distracție non-stop.</p>
+                    <div class="card-price">120 lei</div>
+                </div>
+                <div class="card" data-package="party">
+                    <div class="card-icon"><i class="fas fa-birthday-cake"></i></div>
+                    <h3>Party Exclusiv</h3>
+                    <p>3 ore · max 20 copii · petrecere privată.</p>
+                    <div class="card-price">900 lei</div>
+                </div>
+            </div>
+        </section>
+        <div><img class="info-img" src="./Assets/Bula.png" alt="Bula"></div>
+        <section id="rezervari">
+            <h2 class="section-title">📅 Rezervări</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <form class="contact-form" id="reservationForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nume părinte</label>
+                        <input type="text" id="parentName" placeholder="ex: Popescu Maria" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" placeholder="maria@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Telefon</label>
+                        <input type="tel" id="phone" placeholder="07xx xxx xxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-gift"></i> Alege pachetul</label>
+                        <div class="select-wrapper">
+                            <select id="packageSelect" required>
+                                <option value="" disabled selected>-- Selectează un pachet --</option>
+                                <option value="explorator">Pachet Explorator (1h) - 50 lei/copil</option>
+                                <option value="aventura">Pachet Aventură (3h) - 120 lei/copil</option>
+                                <option value="party">Pachet Party Exclusiv (3h, max 20 copii) - 900 lei</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-children"></i> Număr copii</label>
+                        <input type="number" id="kids" min="1" max="20" placeholder="max. 20 copii" required>
+                        <div class="error-message" id="kidsError">
+                            <i class="fas fa-heart-broken"></i>
+                            <span>Oops! Numărul de copii trebuie să fie între 1 și 20. 🧸💔</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> Data dorită</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Mesaj</label>
+                        <textarea id="message" rows="2" placeholder="Mențiuni speciale..."></textarea>
+                    </div>
+                    
+                    <div class="total-box">
+                        <span class="total-label">Total de plată: </span>
+                        <span class="total-amount" id="totalAmount">0 lei</span>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Trimite rezervarea 🚀</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">📍 Contact</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem;">
+                <div style="background: rgba(255,255,255,0.5); backdrop-filter: blur(4px); padding: 2rem; border-radius: 30px; min-width: 250px;">
+                    <h3 style="font-family: 'Patrick Hand', cursive; font-size: 2rem;"><i class="fas fa-map-pin"></i> Adresă</h3>
+                    <p>Strada Zâmbetelor nr. 10, București</p>
+                    <h3 style="margin-top: 1.5rem;"><i class="fas fa-clock"></i> Program</h3>
+                    <p>L-V: 10-20 · S-D: 09-21</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); backdrop-filter: blur(4px); padding: 2rem; border-radius: 30px; min-width: 250px;">
+                    <h3 style="font-family: 'Patrick Hand', cursive; font-size: 2rem;"><i class="fas fa-phone-alt"></i> Telefon</h3>
+                    <p>0712 345 678</p>
+                    <h3 style="margin-top: 1.5rem;"><i class="fas fa-envelope-open-text"></i> Email</h3>
+                    <p>contact@minitopia.ro</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="locatie">
+            <h2 class="section-title">🗺️ Unde ne găsești</h2>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;">📍 Strada Zâmbetelor nr. 10, București</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.0000000000005!2d26.10000000000001!3d44.433333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff0000000001%3A0x000000000000000!2sStrada%20Z%C3%A2mbetelor%2010%2C%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1700000000000" 
+                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2025 Minitopia · Toate drepturile rezervate · Creat cu 🧡 pentru cei mici</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">"Mini world. Maxi fun."</p>
+        </footer>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Înapoi sus"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

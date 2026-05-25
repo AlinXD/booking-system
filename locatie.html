@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Locație — Minitopia</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/locatie.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon"></span><span class="nav-logo-text">Minitopia</span>
+    </a>
+    <nav class="nav-links">
+      <a href="despre.html">Despre Noi</a>
+      <a href="pachete.html">Pachete &amp; Tarife</a>
+      <a href="evenimente.html">Evenimente</a>
+      <a href="rezervari.html">Rezervări</a>
+      <a href="contact.html">Contact</a>
+      <a href="recenzii.html">Review-uri</a>
+      <a href="locatie.html" class="active">Locație</a>
+    </nav>
+      <div class="buttons-navbar">
+        <button class="theme-toggle" title="Schimbă tema"><svg class="sun-icon" viewBox="0 0 24 24">
+            <path
+              d="M12 18a6 6 0 100-12 6 6 0 000 12zM12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+          </svg><svg class="moon-icon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor" />
+          </svg></button>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="despre.html">Despre Noi</a><a href="pachete.html">Pachete &amp; Tarife</a>
+  <a href="evenimente.html">Evenimente</a><a href="rezervari.html">Rezervări</a>
+  <a href="contact.html">Contact</a><a href="recenzii.html">Review-uri</a><a href="locatie.html">Locație</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-hero">
+    <a href="index.html" class="back-link">Înapoi la Homepage</a>
+    <h1>Unde ne găsești <span class="emoji">📍</span></h1>
+    <p>Șoseaua Alexandriei 126, București, 051538</p>
+  </div>
+
+  <div class="loc-wrap">
+    <div class="map-box reveal">
+      <iframe
+        src="https://www.google.com/maps?q=Soseaua+Alexandriei+126+Bucuresti&output=embed"
+        loading="lazy"
+        title="Minitopia pe hartă">
+      </iframe>
+    </div>
+    <div class="qr-box reveal">
+      <h3>Scanează &amp; navighează</h3>
+      <div class="qr-img">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwww.google.com%2Fmaps%3Fq%3DSoseaua%2BAlexandriei%2B126%2BBucuresti" alt="Cod QR locație Minitopia"/>
+      </div>
+      <p>Deschide harta direct pe telefon</p>
+    </div>
+  </div>
+
+  <div class="transport">
+    <h2>Cum ajungi la noi</h2>
+    <div class="trans-grid">
+      <div class="trans-card reveal">
+        <div class="trans-icon">🚇</div>
+        <h3>Metrou</h3>
+        <p>Stația Eroilor (M1/M3), apoi 5 min de mers pe jos.</p>
+      </div>
+      <div class="trans-card reveal">
+        <div class="trans-icon">🚌</div>
+        <h3>Autobuz</h3>
+        <p>Liniile 122, 385, 601 – stația Veseliei.</p>
+      </div>
+      <div class="trans-card reveal">
+        <div class="trans-icon">🚗</div>
+        <h3>Parcare</h3>
+        <p>Parcare gratuită disponibilă în vecinătate.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-link-center">‹ Înapoi la Homepage</a>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><span class="nav-logo-icon"></span><span class="nav-logo-text">Minitopia</span></a>
+      <p class="footer-tagline">Mini world maxi fun!!!</p>
+      <p>Locul unde imaginația prinde viață și fiecare colț e o nouă aventură.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/minitopia.kids/" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.332.014 7.052.072 5.196.157 3.501.673 2.227 1.948.953 3.222.437 4.917.353 6.772.295 8.052.281 8.461.281 12s.014 3.948.072 5.228c.085 1.855.6 3.55 1.874 4.825 1.275 1.274 2.97 1.79 4.826 1.875 1.28.058 1.689.072 5.228.072s3.948-.014 5.228-.072c1.855-.085 3.55-.601 4.825-1.875 1.274-1.275 1.79-2.97 1.875-4.825.058-1.28.072-1.689.072-5.228s-.014-3.948-.072-5.228c-.085-1.855-.601-3.55-1.875-4.824C20.55.673 18.854.157 17 .072 15.72.014 15.311 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.55a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.84-.39z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Navigație</h4><ul>
+      <li><a href="index.html">Acasă</a></li><li><a href="despre.html">Despre Noi</a></li>
+      <li><a href="pachete.html">Pachete &amp; Tarife</a></li><li><a href="evenimente.html">Evenimente</a></li>
+      <li><a href="rezervari.html">Rezervări</a></li><li><a href="contact.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><span class="fi">📍</span>Șoseaua Alexandriei 126, București, 051538</li>
+      <li><span class="fi">📞</span><a href="tel:+40764292754">+40 764 292 754</a></li>
+      <li><span class="fi">✉️</span><a href="mailto:rezervari@minitopia.ro">rezervari@minitopia.ro</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Program</h4><ul class="footer-program">
+      <li><span class="day">🕐 Luni–Vineri</span><span class="hours">10:00 – 20:00</span></li>
+      <li><span class="day">🕐 Weekend </span><span class="hours">09:00 – 21:00</span></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 Minitopia · Toate drepturile rezervate · Creat cu ❤️ pentru cei mici</div>
+</footer>
+
+<button class="back-top" id="backTop">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

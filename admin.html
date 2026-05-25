@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Minitopia</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .rezervare-card {
+      padding: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .rezervare-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-2);
+      padding-bottom: 12px;
+      margin-bottom: 8px;
+    }
+    .rezervare-header h3 {
+      color: var(--yellow);
+      margin: 0;
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+    }
+    .badge {
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge.Pending { background: var(--orange); color: white; }
+    .badge.Accepted { background: var(--green); color: #000; }
+    .badge.Rejected { background: var(--pink); color: white; }
+    
+    .rezervare-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+    .rezervare-details span { color: var(--text); font-weight: 700; }
+    
+    .rezervare-actions {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    /* Culori butoane actiuni */
+    .btn-accept { background: var(--green); color: #000; }
+    .btn-reject { background: var(--pink); color: white; }
+    
+    #dashboard-section { display: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="nav-logo-icon"></div>
+        <div class="nav-logo-text">Admin Minitopia</div>
+      </div>
+      <div class="nav-links">
+        <a href="#" id="logoutBtn" style="display:none; color: var(--pink);">Deconectare</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="admin-container">
+      
+      <div id="login-section" class="card" style="max-width: 420px; margin: 60px auto; padding: 40px 30px;">
+        <h2 style="text-align: center; color: var(--yellow); margin-bottom: 24px; font-family: var(--font-head); font-size: 2rem;">Autentificare</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label>Nume Admin</label>
+            <input type="text" id="adminName" required placeholder="Ex: admin">
+          </div>
+          <div class="form-group">
+            <label>Parolă</label>
+            <input type="password" id="adminPass" required placeholder="••••••••">
+          </div>
+          <p id="loginError" class="form-error"></p>
+          <button type="submit" class="btn btn-pink btn-full" style="margin-top: 16px;">Intră în cont</button>
+        </form>
+      </div>
+
+      <div id="dashboard-section">
+        <div class="page-hero" style="padding-top: 10px; padding-bottom: 40px;">
+          <h1>Panou Rezervări</h1>
+          <p>Gestionează și filtrează cererile de programare primite</p>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 30px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-yellow-outline" onclick="loadReservations('Pending')">În așteptare</button>
+          <button class="btn btn-yellow-outline" onclick="loadReservations('Accepted')">Acceptate</button>
+          <button class="btn btn-yellow-outline" onclick="loadReservations('Rejected')">Respinse</button>
+          <button class="btn btn-purple-outline" onclick="loadReservations('')">Toate</button>
+        </div>
+
+        <div id="rezervariList">
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:3000/api'; 
+    
+    // Elemente DOM
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const rezervariList = document.getElementById('rezervariList');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('adminToken')) {
+        showDashboard();
+      }
+    });
+
+    // Login
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('adminName').value;
+      const password = document.getElementById('adminPass').value;
+
+      try {
+        const res = await fetch(`${API_URL}/admin/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          loginError.textContent = data.error || 'Date incorecte';
+          loginError.classList.add('show');
+          return;
+        }
+
+        loginError.classList.remove('show');
+        localStorage.setItem('adminToken', data.token);
+        showDashboard();
+      } catch (err) {
+        loginError.textContent = 'Eroare de conexiune la server.';
+        loginError.classList.add('show');
+      }
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('adminToken');
+      dashboardSection.style.display = 'none';
+      logoutBtn.style.display = 'none';
+      loginSection.style.display = 'block';
+      loginForm.reset();
+    });
+
+    function showDashboard() {
+      loginSection.style.display = 'none';
+      dashboardSection.style.display = 'block';
+      logoutBtn.style.display = 'block';
+      loadReservations(''); 
+    }
+
+    // Fetch Date
+    async function loadReservations(statusFilter) {
+      const token = localStorage.getItem('adminToken');
+      if (!token) return;
+
+      let url = `${API_URL}/admin/rezervari`;
+      if (statusFilter) url += `?status=${statusFilter}`;
+
+      try {
+        const res = await fetch(url, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.status === 401) return logoutBtn.click(); // Token expirat
+
+        const data = await res.json();
+        renderReservations(data);
+      } catch (err) {
+        rezervariList.innerHTML = '<p style="text-align:center; color:var(--pink);">Eroare la încărcarea datelor.</p>';
+      }
+    }
+
+    // Render HTML
+    function renderReservations(rezervari) {
+      if (rezervari.length === 0) {
+        rezervariList.innerHTML = '<p style="text-align:center; color:var(--muted); font-size:1.1rem;">Nu există nicio rezervare aici.</p>';
+        return;
+      }
+
+      rezervariList.innerHTML = rezervari.map(r => {
+        const dataFormatata = new Date(r.date).toLocaleDateString('ro-RO', { 
+          weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' 
+        });
+
+        return `
+          <div class="card rezervare-card">
+            <div class="rezervare-header">
+              <h3>${r.name}</h3>
+              <span class="badge ${r.status}">${r.status === 'Pending' ? 'În așteptare' : r.status}</span>
+            </div>
+            <div class="rezervare-details">
+              <div><span>Email:</span> ${r.email}</div>
+              <div><span>Telefon:</span> ${r.phone}</div>
+              <div><span>Dată eveniment:</span> ${dataFormatata}</div>
+              <div><span>Pachet:</span> ${r.type}</div>
+              <div><span>Copii:</span> ${r.kids} (Vârste: ${r.age})</div>
+            </div>
+            ${r.notes ? `<div style="margin-top:8px; color:var(--text-soft); background: var(--bg-input); padding: 12px; border-radius: 8px;"><span>Mesaj client:</span><br>${r.notes}</div>` : ''}
+            
+            <div class="rezervare-actions">
+              ${r.status === 'Pending' ? `
+                <button class="btn btn-accept" onclick="updateStatus(${r.id}, 'Accepted')">✔️ Acceptă</button>
+                <button class="btn btn-reject" onclick="updateStatus(${r.id}, 'Rejected')">❌ Respinge</button>
+              ` : ''}
+              ${r.status === 'Accepted' ? `
+                <button class="btn btn-reject" onclick="updateStatus(${r.id}, 'Rejected')">Anulează Rezervarea</button>
+              ` : ''}
+              ${r.status === 'Rejected' ? `
+                <button class="btn btn-accept" onclick="updateStatus(${r.id}, 'Accepted')">Răzgândește-te (Acceptă)</button>
+              ` : ''}
+              <button class="btn btn-purple-outline" onclick="deleteReservation(${r.id})">🗑️ Șterge Definitiv</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Actiuni API
+    async function updateStatus(id, newStatus) {
+      try {
+        const res = await fetch(`${API_URL}/admin/rezervari/${id}`, {
+          method: 'PATCH',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}` 
+          },
+          body: JSON.stringify({ status: newStatus })
+        });
+        if (res.ok) loadReservations(''); 
+      } catch (err) { console.error(err); }
+    }
+
+    async function deleteReservation(id) {
+      if(!confirm("Ești sigur că vrei să ștergi definitiv această rezervare? Acțiunea este ireversibilă.")) return;
+      try {
+        const res = await fetch(`${API_URL}/admin/rezervari/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
+        });
+        if (res.ok) loadReservations(''); 
+      } catch (err) { console.error(err); }
+    }
+  </script>
+</body>
+</html>
